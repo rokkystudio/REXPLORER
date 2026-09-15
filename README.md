@@ -81,7 +81,9 @@ cmake --build build --config Release
 
 Для x86-сборки Windows 10 используйте `-A Win32`.
 
-Проект не принуждает статическую линковку runtime-библиотек и использует стандартное поведение выбранного toolchain.
+Проект собирает автономный `REXPLORER.exe`: runtime-библиотеки компилятора линкуются статически. Для MinGW используются `-static`, `-static-libstdc++` и `-static-libgcc`; для MSVC используется статический runtime (`/MT` в Release и `/MTd` в Debug).
+
+Исполняемый файл не требует размещать рядом DLL MinGW или устанавливать Visual C++ Redistributable. Зависимости от системных DLL Windows остаются и предоставляются самой Windows.
 
 ## Загрузка
 

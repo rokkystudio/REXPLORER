@@ -15,7 +15,7 @@
 // ReSharper disable CppParameterMayBeConst
 
 /**
- * Replorer — жёсткий перезапуск Windows Explorer с мгновенным восстановлением окон.
+ * REXPLORER — жёсткий перезапуск Windows Explorer с мгновенным восстановлением окон.
  *
  * Логика:
  *  1) Считывает список реально открытых папок, игнорируя виртуальные окна.

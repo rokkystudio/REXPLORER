@@ -160,17 +160,17 @@ static void reopenFolders(const std::vector<std::wstring>& paths)
 //=====================================================================//
 
 /**
- * Точка входа основной логики.
+ * Выполнение основной логики приложения.
  *
  * Порядок действий:
  *  — Сохранить список открытых реальных папок.
  *  — Завершить все процессы проводника.
- *  — Не запускать проводник вручную; система поднимет его автоматически.
- *  — При наличии сохранённых путей — сразу инициировать их открытие.
+ *  — Не запускать проводник напрямую; система поднимет его автоматически.
+ *  — При наличии сохранённых путей — инициировать их открытие через Shell API.
  *
  * @return код завершения приложения.
  */
-int wmain()
+static int run()
 {
     // 1) Список открытых реальных папок ДО рестарта
     std::vector<std::wstring> opened;
@@ -179,7 +179,7 @@ int wmain()
     // 2) ЖЁСТКО завершаем Explorer
     killAllExplorer();
 
-    // 3) НЕ стартуем explorer.exe вручную — даём системе поднять его самой
+    // 3) НЕ стартуем explorer.exe напрямую — даём системе поднять его самой
     // 4) Если ранее были папки — сразу просим их открыть (Explorer подхватит)
     if (!opened.empty()) {
         reopenFolders(opened);
@@ -192,7 +192,7 @@ int wmain()
  *
  * @return код завершения приложения.
  */
-#ifdef _WIN32
-int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int) { return wmain(); }
-int APIENTRY WinMain  (HINSTANCE, HINSTANCE, LPSTR , int) { return wmain(); }
-#endif
+int APIENTRY WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
+{
+    return run();
+}

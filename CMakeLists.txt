@@ -12,7 +12,9 @@ add_executable(REXPLORER WIN32
 target_compile_definitions(REXPLORER PRIVATE UNICODE _UNICODE)
 
 if (MSVC)
-    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+    set_property(TARGET REXPLORER PROPERTY
+            MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>"
+    )
     target_compile_options(REXPLORER PRIVATE /W4 /utf-8)
 
     target_link_options(REXPLORER PRIVATE

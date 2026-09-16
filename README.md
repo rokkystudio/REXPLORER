@@ -67,15 +67,17 @@ cmake-build-release/REXPLORER.exe
 
 ### MinGW + Ninja
 
+Добавьте каталог `bin` установленного MinGW в `PATH`, затем выполните:
+
 ```powershell
-cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=g++ -DCMAKE_RC_COMPILER=windres
 cmake --build build
 ```
 
-### MSVC x64
+### MSVC x64 (Visual Studio 2019)
 
 ```powershell
-cmake -S . -B build -G "Visual Studio 17 2022" -A x64
+cmake -S . -B build -G "Visual Studio 16 2019" -A x64
 cmake --build build --config Release
 ```
 
